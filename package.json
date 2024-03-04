@@ -6,12 +6,13 @@
     "main": "index.js",
     "scripts": {
         "build": "webpack --mode production",
-        "builddev": "webpack --mode development"
+        "builddev": "webpack --mode development",
+        "tc": "tsc --noEmit"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "extensionrunner": ".."
+        "extensionrunner": "^1.0.2"
     },
     "devDependencies": {
         "html-bundler-webpack-plugin": "^3.5.5",
