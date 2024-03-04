@@ -1,4 +1,6 @@
-import adapter from "extensionrunner/adapter";
+import Adapter from "extensionrunner/adapter";
+
+const adapter = new Adapter({ provider: "", out: {} });
 
 adapter.addEventListener("increment_counter", newCounter => {
     document.getElementById("counter").innerText = newCounter;

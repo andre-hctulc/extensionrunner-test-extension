@@ -1,4 +1,6 @@
-import adapter from "extensionrunner/adapter";
+import Adapter from "extensionrunner/adapter";
+
+const adapter = new Adapter({ provider: "", out: { add, substract, logArea } });
 
 function add(a, b) {
     if (!Number.isInteger(a)) a = 0;
@@ -32,8 +34,6 @@ function logArea(width = 1) {
     }
     console.log("Area of", shape, "with width", width, ":", area);
 }
-
-adapter.out = { add, substract, logArea, add };
 
 adapter.addEventListener("shape_change", newShape => {
     shape = newShape;
