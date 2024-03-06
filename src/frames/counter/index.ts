@@ -4,11 +4,14 @@ import ProviderInterface from "../../ProviderInterface";
 export interface Out {
     print: (...text: string[]) => void;
     increment: () => number;
+    reset: () => void;
 }
+
+export type State = { incr: number };
 
 let counter = 0;
 
-new Adapter<ProviderInterface, Out, any>({
+new Adapter<ProviderInterface, Out, State>({
     provider: "",
     out: {
         // handle via function
@@ -17,9 +20,10 @@ new Adapter<ProviderInterface, Out, any>({
             const container = document.getElementById("print");
             if (container) container.innerHTML = text.join(" ");
         },
-        increment: () => {
-            return ++counter;
+        increment: function () {
+            return counter + (this.state.incr || 1);
         },
+        reset: () => (counter = 0),
     },
 }).start(adapter => {
     const container = document.getElementById("counter");
@@ -27,7 +31,7 @@ new Adapter<ProviderInterface, Out, any>({
     // handle via event
     adapter.addEventListener("op:increment", ev => {
         if (!container) return;
-        container.innerHTML = ev.payload.result ? ++ev.payload.result + "" : "ev.payload.result is undefined";
+        container.innerHTML = ev.payload.result ? ev.payload.result + (adapter.state.incr || 1) + "" : "ev.payload.result is undefined";
     });
 
     const echoBtn = document.getElementById("echo-btn") as HTMLButtonElement | null;
@@ -40,4 +44,16 @@ new Adapter<ProviderInterface, Out, any>({
             echoContainer.innerHTML = echo;
         };
     }
+
+    const incr1Btn = document.getElementById("incr1");
+    const incr5Btn = document.getElementById("incr5");
+
+    if (incr1Btn)
+        incr1Btn.onclick = () => {
+            adapter.pushState({ incr: 1 });
+        };
+    if (incr5Btn)
+        incr5Btn.onclick = () => {
+            adapter.pushState({ incr: 5 });
+        };
 });
