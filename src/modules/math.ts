@@ -13,7 +13,7 @@ function substract(a, b) {
     return a - b;
 }
 
-interface Out {
+export interface Out {
     add: typeof add;
     substract: typeof substract;
     logArea: (width: number) => void;

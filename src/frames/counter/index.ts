@@ -1,7 +1,7 @@
 import Adapter from "../../../../Adapter";
 import ProviderInterface from "../../ProviderInterface";
 
-interface Out {
+export interface Out {
     print: (...text: string[]) => void;
     increment: () => number;
 }
