@@ -3,7 +3,7 @@ const HtmlBundlerPlugin = require("html-bundler-webpack-plugin");
 
 module.exports = {
     entry: {
-        math: "./src/modules/math.js",
+        math: "./src/modules/math.ts",
     },
     output: {
         filename: "[name].js",
@@ -17,6 +17,15 @@ module.exports = {
         }),
     ],
     module: {
-        rules: [],
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: "ts-loader",
+                exclude: /node_modules/,
+            },
+        ],
+    },
+    resolve: {
+        extensions: [".tsx", ".ts", ".js"],
     },
 };
