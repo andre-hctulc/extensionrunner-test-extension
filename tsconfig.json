@@ -12,6 +12,6 @@
         "outDir": ".",
         "removeComments": true
     },
-    "include": ["src/**/*.ts"],
+    "include": ["src/**/*.ts", "src/readme/module.js"],
     "exclude": ["node_modules", "src/ProviderInterface.ts"]
 }
