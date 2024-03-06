@@ -30,7 +30,7 @@ new Adapter<ProviderInterface, Out, State>({
     adapter.addEventListener("op:increment", ev => {
         const container = document.getElementById("counter_para");
         // counter gets incremented by operation implemntation
-        if (!container) container.innerHTML = counter.toString();
+        if (container) container.innerHTML = counter.toString();
     });
 
     const echoBtn = document.getElementById("echo-btn") as HTMLButtonElement | null;
