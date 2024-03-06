@@ -21,7 +21,7 @@ new Adapter<ProviderInterface, Out, State>({
             if (container) container.innerHTML = text.join(" ");
         },
         increment: function () {
-            return counter + (this.state.incr || 1);
+            return counter + (this.state?.incr || 1);
         },
         reset: () => (counter = 0),
     },
@@ -31,7 +31,7 @@ new Adapter<ProviderInterface, Out, State>({
     // handle via event
     adapter.addEventListener("op:increment", ev => {
         if (!container) return;
-        container.innerHTML = ev.payload.result ? ev.payload.result + (adapter.state.incr || 1) + "" : "ev.payload.result is undefined";
+        container.innerHTML = ev.payload.result ? ev.payload.result + (adapter.state?.incr || 1) + "" : "ev.payload.result is undefined";
     });
 
     const echoBtn = document.getElementById("echo-btn") as HTMLButtonElement | null;
