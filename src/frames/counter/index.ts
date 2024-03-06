@@ -26,21 +26,20 @@ new Adapter<ProviderInterface, Out, State>({
         reset: () => (counter = 0),
     },
 }).start(adapter => {
-    const container = document.getElementById("counter");
-
     // handle via event
     adapter.addEventListener("op:increment", ev => {
-        if (!container) return;
+        const container = document.getElementById("counter_para");
         // counter gets incremented by operation implemntation
-        container.innerHTML = counter.toString();
+        if (!container) container.innerHTML = counter.toString();
     });
 
     const echoBtn = document.getElementById("echo-btn") as HTMLButtonElement | null;
-    const echoInp = document.getElementById("echo-input") as HTMLInputElement | null;
-    const echoContainer = document.getElementById("echo") as HTMLParagraphElement | null;
 
-    if (echoBtn && echoContainer && echoInp) {
+    if (echoBtn) {
         echoBtn.onclick = async () => {
+            const echoContainer = document.getElementById("echo");
+            const echoInp = document.getElementById("echo-input") as HTMLInputElement | null;
+            if (!echoContainer || !echoInp) return;
             const echo = await adapter.execute("echo", echoInp && echoInp.value ? echoInp.value : "<empty>");
             echoContainer.innerHTML = echo;
         };
