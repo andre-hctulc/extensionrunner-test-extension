@@ -12,7 +12,7 @@ export type State = { incr: number };
 let counter = 0;
 
 new Adapter<ProviderInterface, Out, State>({
-    provider: "http://localhost:3444",
+    provider: "http://localhost:1234",
     // DEBUG
     errorOnUnauthorized: true,
     out: {

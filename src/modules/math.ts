@@ -20,7 +20,7 @@ export interface Out {
 }
 
 new Adapter<ProviderInterface, Out>({
-    provider: "",
+    provider: "http://localhost:1234",
     // DEBUG
     errorOnUnauthorized: true,
     out: { add, substract },
