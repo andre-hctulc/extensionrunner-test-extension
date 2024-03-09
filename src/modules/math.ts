@@ -19,7 +19,12 @@ export interface Out {
     logArea: (width: number) => void;
 }
 
-new Adapter<ProviderInterface, Out>({ provider: "", out: { add, substract } }).start(adapter => {
+new Adapter<ProviderInterface, Out>({
+    provider: "",
+    // DEBUG
+    errorOnUnauthorized: true,
+    out: { add, substract },
+}).start(adapter => {
     adapter.execute("alert", "Math Adapter started");
 
     adapter.addEventListener("op:logArea", ev => {
