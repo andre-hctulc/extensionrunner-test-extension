@@ -3,19 +3,16 @@
     "private": true,
     "version": "1.0.32",
     "description": "",
-    "main": "index.js",
     "scripts": {
-        "build": "webpack --mode production",
-        "build:dev": "webpack --mode development",
+        "build": "npm run build:module && npm run build:component",
+        "build:component": "parcel build src/components/counter/index.html --dist-dir dist/components/counter --no-source-maps",
+        "build:module": "parcel build src/modules/math.ts --dist-dir dist/modules --no-source-maps",
         "tc": "tsc --noEmit",
         "update": "npm run build && git add . && git commit -m \"update $npm_package_version ^\" && npm version patch"
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "html-bundler-webpack-plugin": "^3.5.5",
-        "ts-loader": "^9.5.1",
-        "webpack": "^5.90.3",
-        "webpack-cli": "^5.1.4"
+        "parcel": "^2.12.0"
     }
 }
