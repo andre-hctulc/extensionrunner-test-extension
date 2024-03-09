@@ -5,7 +5,7 @@
     "description": "",
     "scripts": {
         "build": "npm run build:module && npm run build:component",
-        "build:component": "parcel build src/components/counter/index.html --dist-dir dist/components/counter --no-source-maps",
+        "build:component": "parcel build src/components/counter/index.html --dist-dir dist/components/counter --no-source-maps --public-url ./",
         "build:module": "parcel build src/modules/math.ts --dist-dir dist/modules --no-source-maps",
         "tc": "tsc --noEmit",
         "update": "npm run build && git add . && git commit -m \"update $npm_package_version ^\" && npm version patch"
